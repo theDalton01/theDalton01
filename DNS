@@ -1,0 +1,181 @@
+
+What is DNS? 
+
+Primary DNS vs. Secondary DNS and Advanced Use Cases
+
+
+
+Domain Name Server (DNS) is a standard protocol that helps Internet users discover websites using human readable addresses. Like a phonebook which lets you look up the name of a person and discover their number, DNS lets you type the address of a website and automatically discover the Internet Protocol (IP) address for that website.
+
+Without DNS, the Internet would collapse - it would be impossible for people and machines to access Internet servers via the friendly URLs they have come to know.
+
+For example, the domain name www.ns1.com you are viewing now, translates to the IP address 104.20.48.182 (in the old IPv4 format) or 2002:6814:30b6:0:0:0:0:0 (in the newer IPv6 format).
+
+DNS Propagation
+
+Unlike a phone book, DNS records are commonly updated, meaning that a server’s IP address can change without affecting end users. Users continue to use the same domain name, and are automatically redirected to the new address. A DNS A or AAAA Record points a domain or subdomain to an IP, and a CNAME record points a domain or subdomain to another domain name.
+
+After you register a new domain name or when you update DNS servers on your domain name, it usually takes about 12-36 hours for the domain name servers world-wide to be updated and able to access the information. This period is referred to as propagation. With next-generation DNS technology propagation can be reduced to minutes or seconds.
+
+DNS allows for multiple hostnames to correspond to a single IP address - this can be used for virtual hosting, when many websites are served from a single host. A single hostname can also resolve to many IP addresses, in order to distribute load to multiple servers.
+
+DNS Resolution
+
+Typically, when you connect to a local network, Internet service provider (ISP) or WiFi network, the modem or router sends network configuration information to your local device, including one or more DNS servers. These are the initial DNS servers your device will use to translate host names to IP addresses.
+
+A component called a DNS Resolver is responsible for checking if the host name is available in local cache, and if not, contacts a series of DNS Name Servers, until eventually it receives the IP of the website or service you are trying to reach. If everything is working well, this can take less than a second. The process is known as DNS resolution of a hostname to IP address.
+
+Uses of DNS
+
+The classic use of DNS is to translate the domain name in a URL into a corresponding IP address. But DNS has many more uses - it underlies many other forms of Internet communication.
+
+What is DNS Used For?
+
+Resolving names of World Wide Web (WWW) sites
+
+Routing messages to email servers and webmail services
+
+Connecting app servers, databases and middleware within a web application
+
+Virtual Private Networks (VPN)
+
+Peer-to-peer sharing programs
+
+Multiplayer games
+
+Instant messaging and online meeting services
+
+Communication between IoT devices, gateways and servers
+
+If you use any of the above services, you will probably use DNS to communicate with it.
+
+If you own or manage any of the above - for example if you own a website or allow VPN access to your company’s network - you will need to setup DNS in order to allow users to access to your service.
+
+Next-Generation Uses of DNS
+
+DNS has evolved over the past 20 years. Next-generation DNS services such as NS1, which provide advanced traffic routing capabilities, have created new uses for DNS:
+
+Global server load balancing (GSLB) - fast routing of connections between globally distributed data centers
+
+Multi CDN - routing users to the CDN that will provide the best experience
+
+Geographical routing - identifying the physical location of each user and ensuring they are routed to the nearest possible resource
+
+Data center and cloud migration - moving traffic in a controlled manner from on-premise resources to cloud resources
+
+Internet traffic management - reducing network congestion and ensuring traffic flows to the appropriate resource in an optimal manner
+
+How DNS Works - Building Blocks of DNS
+
+There are four main building blocks that enable DNS to function:
+
+DNS Resolver
+
+A DNS resolver, also called a recursive resolver, is a server designed to receive DNS queries from web browsers and other applications. The resolver receives a hostname - for example, www.example.com - and is responsible for tracking down the IP address for that hostname.
+
+The DNS resolver might be operated by the local network, an Internet Service Provider (IP), a mobile carrier, a WIFI network, or other third party. The resolver starts by looking in its local cache or that of the operating system on the local device - if the hostname is found, it is resolved immediately.
+
+If not found, the resolver contacts a DNS Root Server and receives details of a TLD Name Server. Via the TLD Name Server, it receives details of an Authoritative Name Server, and asks it for the IP that matches the requested hostname. When it receives the IP, the query is resolved.
+
+DNS Root Server
+
+The root server is the first step in translating human readable host names into IP addresses. The Top Level Domain (TLD) takes the TLD provided in the user’s query - for example, www.example.com - and provides details for the .com TLD Name Server.
+
+There are 13 logical root servers worldwide, indicated by the letters A through M, operated by organizations such as Verisign, Cogent, the University of Maryland and the U.S. Army Research Lab.
+
+TLD Name Server
+
+The TLD Name Server takes the domain name provided in the query - for example www.example.com - and provides the IP of an Authoritative Name Server. This is a DNS server that contains DNS records for the specific domain.
+
+There is a Name Server for each Top Level Domain (TLD) - there are currently over 1500 valid top level domains, including the original TLDs like .com and .org, country codes such as co.uk and co.fr, and new TLDs such as .biz.
+
+Authoritative Name Server
+
+The Authoritative Name Server is the last stop in the name server query. The Authoritative Name Server takes the domain name and subdomain, and if it has access to the DNS records, it returns the correct IP address to the DNS Resolver.
+
+As the Internet grows, the original IP address standard, IPv4 (which only allowed up to 4.3 billion IP addresses) is being replaced with IPv6 (which supports as many as 1036 IP addresses). Increasingly, DNS servers return IPs using the IPv6 format.
+
+In some cases, the Authoritative Name Server will route the DNS Resolver to another Name Server that contains specific records for a subdomain, for example, support.example.com.
+
+
+Authoritative Name Servers are organized using DNS Zones. Each DNS zone has a closed set of Authoritative Name Servers. They are called “authoritative” because they can provide an authoritative, correct response as to what is the current IP for a specific domain.
+
+Summary of the DNS Process - a DNS Example
+
+DNS Query - a web browser or other application requests a human readable hostname such as “www.example.com”. The query is handled by the DNS Resolver, which is responsible for finding the IP matching the hostname.
+
+DNS Root Servers - the Resolver talks to a Root Server and is referred to a Top Level Domain (TLD) Name Server, corresponding to the TLD in the query, such as .com.
+
+TLD Name Server - the Resolver contacts the relevant TLD Name Server and is referred to an Authoritative Name Server that holds the current details for the domain name.
+
+Authoritative Name Server - finally, the Resolver sends the query to the Authoritative Name Server which is is responsible for that domain (as indicated in a Zone File on the TLD Name Server). This DNS server knows the IP address for the full domain, www.example.com, and returns that answer to the DNS Resolver.
+
+DNS Query Resolved - now that the DNS Resolver knows the IP address for the domain name, it returns it to the browser or other application on the client side. The client can then connect to the server using the IP address, and start communicating with it.
+
+Client Can Communicate with Server - If the client is a browser, and the user typed in a domain, the website at that domain can now be displayed. If the client is a messaging app, the user can now send messages to other users via the server.
+
+
+
+How DNS Works
+
+
+DNS Types - 3 Types of DNS Queries
+
+Recursive query - In a recursive query, a DNS client requires that a DNS server (typically a DNS recursive resolver) respond to the client with either the requested resource record or an error message if it can't find the record.
+
+Iterative query - the DNS client allows a DNS server to return the best answer it can. If the queried DNS server does not have a match for the hostname, it returns a referral to an Authoritative DNS Server at a lower level of the DNS hierarchy. The DNS client then makes a query to the referral address. This process continues with additional DNS servers down the query chain until either an error or timeout occurs.
+
+Non-recursive query - this occurs when a DNS Resolver queries a DNS Name Server for a record, either because the Name Server is authoritative for the record, or the record exists in its cache. DNS servers typically cache DNS records to conserve bandwidth and reduce load on servers further up the hierarchy.
+
+DNS Caching and Time To Live
+
+Because of the scale of the Internet, it’s not enough to have a system of Authoritative Name Servers and refer each client to the correct Name Server. With only Authoritative Name Servers operating, each DNS query must start with a recursive query at the root of the DNS system, which would place enormous strain on the DNS Root Servers.
+
+To improve efficiency, reduce DNS traffic across the Internet, and improve performance, DNS Cache Servers are used. These servers store DNS query results in a cache, and can serve it immediately in response to a query, without requiring recursive DNS queries.
+
+The DNS records are stored in cache for a period of time called time to live, defined in the configuration of each DNS record. Time to live is very significant because it determines the “freshness” of DNS records. Caching will not be effective if users receive stale DNS data, while the IP of the hosts has already changed.
+
+DNS records can be cached at several layers:
+
+Browser DNS caching - modern web browsers are designed to cache DNS records. This enables providing an IP address immediately in response to a user request, without needing to contact external DNS servers. When a request is made for a DNS record, the browser cache is the first location checked for the requested record.
+
+Operating system DNS caching - all operating systems come with DNS resolvers, called “stub resolvers”, which are the second place a DNS query can be resolved before it leaves the local device. When a request is made by an application, the stub resolver checks its own cache to see if it has the record. If it does not, it sends a DNS query (with a recursive flag set), to a DNS Resolver on the local network, operated the Internet service provider (ISP), etc.
+
+Recursive resolver DNS caching - as i discussed above, a DNS Resolver operated by a third part receives DNS queries, and checks its local cache to see if it already has the IP for the requested host.
+
+At all levels of DNS caching, if a resolver does not have the A records for the query (in other words, the specific IPs), but it does have NS records for the Authoritative Name Servers, it queries the Name Servers directly, without performing a recursive query. This prevents lookups from the DNS Root Servers and TLD Name Servers, and helps the DNS query resolve much more quickly.
+
+DNS Record Types
+
+DNS resource records (RR) are the basic information elements of the Domain Name System. They are entries in the DNS database which provide information about hosts. The records are physically stored in the Zone Files on the DNS server.
+
+The following are common DNS records:
+
+Address Mapping records (A) - records that hold a hostname and its corresponding IPv4 address.
+
+IP Version 6 Address records (AAAA) - records that hold a hostname and its corresponding IPv6 address.
+
+Canonical Name records (CNAME) - used to create aliases of domain names. Can be used to alias a domain to another domain.
+
+Mail exchanger record (MX) - specifies a mail exchange server for the domain name, used in the SMTP protocol to route emails to the correct email server.
+
+Name Server records (NS) - delegates a DNS Zone to use a specific Authoritative Name Server.
+
+Reverse-lookup Pointer records (PTR) - used to look up domain names based on an IP address.
+
+Certificate record (CERT) - stores encryption certificates such as PKIX, SPKI, PGP, etc.
+
+Service Location (SRV) - service location record, like MX but for other, newer protocols.
+
+The DNS Protocol
+
+The DNS protocol uses two types of DNS messages, queries and replies. Both queries and replies consist of a header and four sections: question, answer, authority, and an additional space:
+
+The header section contains Identification, used to match responses with queries; Flags; Number of questions; Number of answers; Number of authority resource records (RRs); and Number of additional resource records.
+
+The flag field contains sections of one or four bits, indicating if the message is a query or a reply; if the present packet is a reply, a status, or a request; whether the DNS server is authoritative; whether the client wants to send a recursive query ("RD"); whether the DNS server supports recursion; whether the request was truncated ("TC"); and four bits at the end indicating status.
+
+The question section contains the domain name and type of record (A, AAAA, MX, TXT, etc.) being resolved. The domain name is broken into labels, each label prefixed by the length of that label.
+
+The answer section has the resource records of the queried name. A domain name may occur in multiple records if it has multiple IP addresses associated with it
+
